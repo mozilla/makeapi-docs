@@ -1,0 +1,7 @@
+{% if include.notop == "true" %}
+  <span class="anchor" id="{{ include.id }}"></span>
+{% else %}
+  <span class="anchor" id="{{ include.id }}">
+    <a href="#top" title="top">top</a>
+  </span>
+{% endif %}

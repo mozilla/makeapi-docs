@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MakeAPI Docs{% if page.title }%} - {{page.title}}{% endif %}</title>
+    <link href="https://stuff.webmaker.org/makerstrap/latest/makerstrap.complete.min.css" rel="stylesheet">
+    <link href="/assets/css/highlight.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        background: #e3eaee;
+        padding-top: 50px;
+      }
+
+      .table tbody>tr>td.vcenter {
+        vertical-align: middle;
+      }
+
+      span.anchor {
+        display: block;
+        height: 50px;
+        margin-top: -20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      {% include nav.html %}
+    </nav>
+    {% if page.title == 'Home' %}
+      <div class="jumbotron">
+        <div class="container">
+          <h1>Make API</h1>
+          <p>An API for Exposing User Created Web Content</p>
+        </div>
+      </div>
+    {% endif %}
+    <div class="container">
+      {{ content }}
+    </div>
+    <footer class="wm-footer">
+      {% include nav.html %}
+    </footer>
+  </body>
+</html>
