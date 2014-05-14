@@ -1,0 +1,298 @@
+<div class="container">
+  {% include anchor.html id="app-tags" %}
+  {% include top.html %}
+  <h3>appTags()</h3>
+  <p>This function returns all application tags on a make. i.e. "webmaker.org:featured"</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+
+  var appTags = makes[0].appTags();
+
+  console.log( appTags );
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="user-tags" %}
+  {% include top.html %}
+  <h3>userTags()</h3>
+  <p>This function returns all user tags on a make. i.e. "webmakeruser@domain.com:favourite"</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+
+  var userTags = makes[0].userTags();
+
+  console.log( userTags );
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="raw-tags" %}
+  {% include top.html %}
+  <h3>rawTags()</h3>
+  <p>This function returns all raw tags on a make. i.e. "teach"</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+
+  var rawTags = makes[0].rawTags();
+
+  console.log( rawTags );
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="tagged-with-any" %}
+  {% include top.html %}
+  <h3>taggedWithAny( tags )</h3>
+  <p>Determine whether this make is tagged with any of the tags passed in</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>tags</strong></em> (String or [String]) - tag or tags to check this make for</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.title( "teach kit" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  if( makes[0].taggedWithAny( [ "security", "privacy" ] ) ) {
+    // has at least one of the tags!
+  }
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="remixes" %}
+  {% include top.html %}
+  <h3>remixes( callback )</h3>
+  <p>Get a list of other makes that were remixed from this make. The current make's URL is used as a key.</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server responds to a search request. The function must accept two parameters: "( error, makes )" - if nothing went wrong, error will be falsy, and makes matching your search will be passed as the second parameter. </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.title( "teach" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  makes[0].remixes(function( err, makes ) {
+    // exactly like handling ".then()" callbacks
+  });
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="locales" %}
+  {% include top.html %}
+  <h3>locales( callback )</h3>
+  <p>Similar to remixes(), but filter out only those remixes that have a different locale (i.e., are localized versions of this make).</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server responds to a search request. The function must accept two parameters: "( error, makes )" - if nothing went wrong, error will be falsy, and makes matching your search will be passed as the second parameter. </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.title( "teach" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  makes[0].locales(function( err, makes ) {
+    // exactly like handling ".then()" callbacks
+  });
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="original" %}
+  {% include top.html %}
+  <h3>original( callback )</h3>
+  <p>Get the original make used to create this remix. Null is sent back in the callback if there was no original (not a remix)</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server responds to a search request. The function must accept two parameters: "( error, makes )" - if nothing went wrong, error will be falsy, and makes matching your search will be passed as the second parameter. </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.title( "Kittens" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  makes[0].original(function( err, makes ) {
+    // exactly like handling ".then()" callbacks
+  });
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="wrapped-update" %}
+  {% include top.html %}
+  <h3>update( email, callback )</h3>
+  <p>This function will attempt to update a make.</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>email</strong></em> (String) - the email address of the maker updating the make</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server responds to a search request. The function must accept two parameters: "( error, makes )" - if nothing went wrong, error will be falsy, and makes matching your search will be passed as the second parameter. </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+  .title( "teach" )
+  .then(function( err, makes ) {
+    if ( err ) {
+      // handle error case
+    }
+    var make = makes[0];
+    make.title = "New Title";
+    make.update( "webmaker@webmaker.org", function( err, make ) {
+      // handle results!
+    });
+  });
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

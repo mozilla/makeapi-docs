@@ -1,0 +1,613 @@
+<div class="container">
+  {% include anchor.html id="content-type" %}
+  {% include top.html %}
+  <h3>contentType( type [, not ] )</h3>
+  <p>Match Makes with the given content type value</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>type</strong></em> (String) - The content type value to search for</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match <em>type</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.contentType( "application/x-thimble" )
+.then(function( err, makes ) {
+if ( err ) {
+  // handle error case
+}
+// handle success!
+});
+
+// reverse the filter logic!
+makeapi
+.contentType( "application/x-thimble", true )
+.then(function( err, makes ) {
+if ( err ) {
+  // handle error case
+}
+// handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="description" %}
+  {% include top.html %}
+  <h3>description( description [, not ] )</h3>
+  <p>Match Makes with the given description text</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>description</strong></em> (String) - The description text to search for</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match <em>description</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.description( "maker party" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// reverse the filter logic!
+makeapi
+.description( "maker party", true )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="id" %}
+  {% include top.html %}
+  <h3>id( id [, not ] )</h3>
+  <p>Match Makes with the given ID</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID value to search for</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, will match all makes except the one with the given <em>id</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.id( "makeID" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// reverse the filter logic!
+makeapi
+.id( "makeID", true )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="remixed-from" %}
+  {% include top.html %}
+  <h3>remixedFrom( makeID [, not ] )</h3>
+  <p>Match Makes with the given Make ID set as their remixedFrom value</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>makeID</strong></em> (String) - The Make ID that search hits must have set as their remixedFrom value</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match <em>remixedFrom</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.remixedFrom( someOtherMake.id )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// reverse the filter logic!
+makeapi
+.remixedFrom( someOtherMake.id, true )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="sort-by-field" %}
+  {% include top.html %}
+  <h3>sortByField( field [, direction ] )</h3>
+  <p>Sort the makes matched By Elastic Search using the specified field and direction. Can be called multiple times to add more than one sort field, with the first fields taking precedence.</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>field</strong></em> (String) - A String matching one valid field of a make. i.e. "createdAt"</li>
+              <li><em><strong>direction</strong></em> (String) - Either "asc" or "desc", specifying ascending or descending sort, respectively. defaults to "asc" </em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.sortByField( "updatedAt" )
+.then(function( err, makes ) {});
+
+makeapi
+.sortByField( "createdAt", "desc" )
+.sortByField( "updatedAt", "asc" )
+.then(function( err, makes ) {});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="tags" %}
+  {% include top.html %}
+  <h3>tags( options [, not ] )</h3>
+  <p>Add a filter to the search for the specified tag[s]</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li>
+                <em><strong>options</strong></em> (Object || Array) - An Object or Array. If it is an Array, it should contain one or all of the tags you wish to filter against. If it is an object, it must contain the following:
+                <ul class="list-inset">
+                  <li><em><strong>tags</strong></em> (Array) - An Array of tags, specified as strings </li>
+                  <li><em><strong>execution</strong></em> (String) - can be one of "and" and "or" Specifies if multiple tags should be searched for using AND/OR logic. defaults to "and". I.E. "tag1" OR "tag2"</li>
+                  <li><strong>**YOU MUST USE THE OBJECT STYLE DEFINITION WITH  <a href="./#find" title="find">find</a></strong></li>
+                </ul>
+              </li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match the given <em>tag[s]</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.tags( [ "foo", "bar", "baz" ] )
+.then(function( err, makes ) {});
+
+makeapi
+.tags({
+  tags: [ "foo", "bar", "baz" ]
+})
+.then(function( err, makes ) {});
+
+makeapi
+.tags({
+  tags: [ "foo", "bar", "baz" ],
+  execution: "or" // defaults to "and"
+})
+.then(function( err, makes ) {});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="tag-prefix" %}
+  {% include top.html %}
+  <h3>tagPrefix( prefix [, not ] )</h3>
+  <p>Add a filter to the search for the specified prefix. for example, this will match makes with the tag "applePie" if prefix is "apple"</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>prefix</strong></em> (String) - A string specifying the prefix you wish to filter for. i.e. It will match "abc" in "abc:def"</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match <em>prefix</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.tagPrefix( "apple" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// reverse the filter logic!
+makeapi
+.tagPrefix( "apple", true )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="title" %}
+  {% include top.html %}
+  <h3>title( title [, not ] )</h3>
+  <p>Filter for makes matching the title - this is a full text search, so "maker party" will match "best maker party ever!"</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>title</strong></em> (String) - A String defining the title search value</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match <em>title</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.title( "application/x-thimble" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// reverse the filter logic!
+makeapi
+.title( "application/x-thimble", true )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="user" %}
+  {% include top.html %}
+  <h3>user( username [, not ] )</h3>
+  <p>Add a filter to the search for the specified username</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>username</strong></em> (String) - A string containing the username of the Webmaker whose Makes you want to filter for</li>
+              <li><em><strong>not</strong></em> (Boolean) - if true, only makes that <em>do not</em> match <em>username</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.user( "amazingWebmaker" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+makeapi
+.user( "amazingWebmaker", true )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="liked-by-user" %}
+  {% include top.html %}
+  <h3>likedByUser( username )</h3>
+  <p>Filter for makes that the given user has liked</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>username</strong></em> (String) - A String representing the username of the Webmaker whose liked makes you wish to search for</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.likedByUser( "webmaker" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="get-remix-counts" %}
+  {% include top.html %}
+  <h3>getRemixCounts()</h3>
+  <p>Instructs the MakeAPI Server to include each make's remix count value in the search results. NOTE: This option can increase the response time of the request</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.getRemixCounts()
+.tags( "makerparty" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+  console.log(makes[0].remixCount);
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="or" %}
+  {% include top.html %}
+  <h3>or()</h3>
+  <p>Changes the boolean logic applied to search filters from AND to OR</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.or()
+.description( "kittens and stuff" )
+.title( "chainsaws" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="container">
+  {% include anchor.html id="limit" %}
+  {% include top.html %}
+  <h3>limit( num )</h3>
+  <p>Sets the maximum number of results you want back from the Make API server. Defaults to 10</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>num</strong></em> (Number) - A whole number, greater than 0. If the value is rejected, it will not set limit and fail silently.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.limit( 20 ) // it can also convert the string "20" to a number
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="page" %}
+  {% include top.html %}
+  <h3>page( num )</h3>
+  <p>Request a specific page of results. If the page is too high to contain matched makes, an empty array is returned</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>num</strong></em> (Number) - A whole number, greater than 0. If the value is rejected, it will not set limit and fail silently.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( options );
+
+makeapi
+.page( 5 )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

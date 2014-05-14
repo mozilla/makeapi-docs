@@ -1,0 +1,214 @@
+<div class="container">
+  {% include anchor.html id="create-list" %}
+  {% include top.html %}
+  <h3>Create List</h3>
+  <p>Create an ordered list of Makes</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td>Method:</td>
+          <td>POST</td>
+        </tr>
+        <tr>
+          <td>Path:</td>
+          <td>/api/20130724/list</td>
+        </tr>
+        <tr>
+          <td>Authentication:</td>
+          <td><strong>yes</strong></td>
+        </tr>
+        <tr>
+          <td class="vcenter">Request Body:</td>
+          <td class="text-left">
+{% highlight js  %}
+{
+make: [ /* array of Make IDs */ ],
+userId: <num>, // Webmaker userID of creator.
+title: "title"
+}
+{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Response:</td>
+          <td class="text-left">
+{% highlight js %}
+{
+makes: [ /* ... */],
+userId: <num>,
+title: "title"
+}
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="update-list" %}
+  {% include top.html %}
+  <h3>Update List</h3>
+  <p>Update a List of Makes by ID</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td>Method:</td>
+          <td>PUT</td>
+        </tr>
+        <tr>
+          <td>Path:</td>
+          <td>/api/20130724/list/:id</td>
+        </tr>
+        <tr>
+          <td>Authentication:</td>
+          <td><strong>yes</strong></td>
+        </tr>
+        <tr>
+          <td>Parameter:</td>
+          <td>:id - The unique ID of the List being updated</td>
+        </tr>
+        <tr>
+          <td class="vcenter">Request Body:</td>
+          <td class="text-left">
+{% highlight js %}
+{
+userId: <num>, // userId of Webmaker Account updating the List
+makes: [ /* new array of List IDs */ ]
+}
+{% endhighlight %}
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Response:</td>
+          <td class="text-left">
+{% highlight js %}
+{
+makes: [ /* ... */],
+userId: <num>,
+title: "title"
+}
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="delete-list" %}
+  {% include top.html %}
+  <h3>Delete List</h3>
+  <p>Delete a List by ID</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td>Method:</td>
+          <td>DELETE</td>
+        </tr>
+        <tr>
+          <td>Path:</td>
+          <td>/api/20130724/list/:id</td>
+        </tr>
+        <tr>
+          <td>Authentication:</td>
+          <td><strong>yes</strong></td>
+        </tr>
+        <tr>
+          <td>Parameter:</td>
+          <td>:id - The unique ID of the List being deleted</td>
+        </tr>
+        <tr>
+          <td class="vcenter">Response</td>
+          <td class="text-left">
+{% highlight js %}
+{
+makes: [ /* ... */],
+userId: <num>,
+title: "title"
+}
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="get-list" %}
+  {% include top.html %}
+  <h3>Get List</h3>
+  <p>
+    Gets a List of makes. The IDs stored in the list are changed into the
+    actual Make data and sorted.
+  </p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td>Method:</td>
+          <td>GET</td>
+        </tr>
+        <tr>
+          <td>Path:</td>
+          <td>/api/20130724/list/:id</td>
+        </tr>
+        <tr>
+          <td>Parameter:</td>
+          <td>:id - The unique ID of the List to retrieve</td>
+        </tr>
+        <tr>
+          <td class="vcenter">Response</td>
+          <td class="text-left">
+{% highlight js %}
+{
+makes: [ /* Array of ordered makes, with M data prefetched */ ]
+}
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="get-users-lists" %}
+  {% include top.html %}
+  <h3>Get User's Lists</h3>
+  <p>Gets all lists created by a give user (by ID)</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td>Method:</td>
+          <td>GET</td>
+        </tr>
+        <tr>
+          <td>Path:</td>
+          <td>/api/20130724/list/user/:id</td>
+        </tr>
+        <tr>
+          <td>Parameter:</td>
+          <td>:id - The userID of the Webmaker user whose lists are to be retrieved</td>
+        </tr>
+        <tr>
+          <td class="vcenter">Response</td>
+          <td class="text-left">
+{% highlight js %}
+{
+lists: [ /* array of lists created by the Webmaker User */]
+}
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

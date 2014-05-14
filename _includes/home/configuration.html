@@ -1,0 +1,111 @@
+{% include anchor.html id="configuration" %}
+{% include top.html %}
+<h3>Configuration</h3>
+<div class="container">
+  <h4>Set/change these values in your .env file</h4>
+  <table class="table-hover table-bordered pad">
+    <thead>
+      <tr>
+        <th class="text-center">Variable Name</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Default Value (none if empty)</th>
+      </tr>
+    </thead>
+    <tbody class="text-left">
+      <tr>
+        <td>SESSION_SECRET</td>
+        <td>A secret string used to sign session cookies</td>
+        <td>dummy secret value</td>
+      </tr>
+      <tr>
+        <td>COOKIE_DOMAIN</td>
+        <td>The domain for the super cookie - leave unset for localhost development</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>PORT</td>
+        <td>Port to accept incoming connections on</td>
+        <td>5000</td>
+      </tr>
+      <tr>
+        <td>NODE_ENV</td>
+        <td>Indicates the environment the server is running in - possible values could be "development" or "production"</td>
+        <td>development</td>
+      </tr>
+      <tr>
+        <td>MONGO_URL</td>
+        <td>Connection string for the MongoDB instance</td>
+        <td>mongodb://localhost/makeapi</td>
+      </tr>
+      <tr>
+        <td>ELASTIC_SEARCH_URL</td>
+        <td>Connection String to ElasticSearch</td>
+        <td>http://localhost:9200</td>
+      </tr>
+      <tr>
+        <td>AUDIENCE</td>
+        <td>Persona Audience - typically set to the default, or the host and port of a local webmakerorg instance</td>
+        <td>http://localhost:7777</td>
+      </tr>
+      <tr>
+        <td>LOGIN_SERVER</td>
+        <td>URL for the Webmaker login server, for SSO on the admin page</td>
+        <td>http://localhost:3000</td>
+      </tr>
+      <tr>
+        <td>LOGIN_SERVER_URL_WITH_AUTH</td>
+        <td>Connection string for the webmaker login server, including basic auth credentials</td>
+        <td>http://testuser:password@localhost:3000</td>
+      </tr>
+      <tr>
+        <td>FORCE_SSL</td>
+        <td>Is this server running behind an SSL-enabled load-balancer? If so, set to true.</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>USE_DEV_KEY_LOOKUP</td>
+        <td>If true, the development API key lookup will be enabled. This means
+          all hawk protected API calls will succeed if the private and public keys
+          used are set to "00000000-0000-0000-000000000000". <strong>Turn this off
+          if not in a development environment!</strong>
+        </td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td>ENABLE_GELF_LOGS</td>
+        <td>Toggles on GELF formatted request logging via <a href="https://github.com/brianloveswords/messina" title="Messina">Messina</a></td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>ENFORCE_WRITE_PERMISSIONS</td>
+        <td>If set to true, only the pair of API keys that created a make can be used to update/delete the make. <strong>This should be set to true in non-development environments</strong></td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>AWS_ACCESS_KEY_ID</td>
+        <td>AWS access key ID to be used by <a href="https://github.com/jbuck/hatchet" title="Hatchet">Hatchet</a></td>
+        <td>/td>
+      </tr>
+      <tr>
+        <td>AWS_SECRET_ACCESS_KEY</td>
+        <td>AWS secret access key to be used by <a href="https://github.com/jbuck/hatchet" title="Hatchet">Hatchet</a></td>
+        <td>""</td>
+      </tr>
+      <tr>
+        <td>HATCHET_APP_NAME</td>
+        <td>App name to be sent with <a href="https://github.com/jbuck/hatchet" title="Hatchet">Hatchet</a> messages</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>HATCHET_QUEUE_REGION</td>
+        <td>AWS Queue region that the SQS Queue resides in</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>HATCHET_QUEUE_URL</td>
+        <td>AWS SQS Queue URL</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

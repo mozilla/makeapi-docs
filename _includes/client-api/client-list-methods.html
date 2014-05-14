@@ -1,0 +1,240 @@
+<div class="container">
+  {% include anchor.html id="create-list" %}
+  {% include top.html %}
+  <h3>createList( options, callback )</h3>
+  <p>Creates an ordered Make list with the given options</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li>
+                <em><strong>options</strong></em> (Object) - An Object with the following attributes:
+                <ul class="list-inset">
+                  <li><em><strong>makes</strong></em> (Array) - An Array of Make IDs</li>
+                  <li><em><strong>userId</strong></em> (Number) - The Unique user ID of the webmaker creating the list</li>
+                  <li><em><strong>title</strong></em> (String) - An optional title for the List - helps identifying the content of a list</li>
+                </ul>
+              </li>
+              <li><em><strong>callback</strong></em> (Function) - A function to pass the result into</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.createList(
+  {
+    makes: [ "123", "456", "789" ],
+    userId: 12345
+  },
+  function( err, list ) {
+    if( err ) {
+      // something went wrong
+    }
+    // your new list!
+    // NOTE: The list's makes will be represented as ID's in the response. To get the Make Data, request the list by ID using the GET route.
+    console.log( list );
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="update-list" %}
+  {% include top.html %}
+  <h3>updateList( id, options, callback )</h3>
+  <p>Updates a Make list with the given options</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - ID of the list that is to updated</li>
+              <li>
+                <em><strong>options</strong></em> (Object) - An Object with the following attributes:
+                <ul class="list-inset">
+                  <li><em><strong>userId</strong></em> (Number) - The Unique user ID of the webmaker updating the list (must be list owner)</li>
+                  <li><em><strong>makes</strong></em> (Array) - An Array of Make IDs</li>
+                  <li><em><strong>title</strong></em> (String) - An optional title for the List - helps identifying the content of a list</li>
+                </ul>
+              </li>
+              <li><em><strong>callback</strong></em> (Function) - A function to pass the result into</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.updateList(
+  "id-of-a-list",
+  {
+    userId: 12345,
+    makes: [ "123", "456" ]
+  },
+  function( err, list ) {
+    if( err ) {
+      // something went wrong
+    }
+    // updated list successfully!
+    // NOTE: The list's makes will be represented as ID's in the response. To get the Make Data, request the list by ID using the GET route.
+    console.log( list );
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="remove-list" %}
+  {% include top.html %}
+  <h3>removeList( id, userId, callback )</h3>
+  <p>Deletes a List</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - ID of the List to delete</li>
+              <li><em><strong>userId</strong></em> (Number) - The Unique user ID of the webmaker deleting the list (must be list owner)</li>
+              <li><em><strong>callback</strong></em> (Function) - A function to pass the result into</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+  .removeList(
+    "id-of-a-list",
+    12345,
+    function( err, list ) {
+      if( err ) {
+        // something went wrong
+      }
+      // deleted list successfully!
+      console.log( list );
+    }
+  );
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="get-list" %}
+  {% include top.html %}
+  <h3>getList( id, callback [, noWrap ] )</h3>
+  <p>Get a List by ID</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - ID of the list that is to retrieved</li>
+              <li><em><strong>callback</strong></em> (Function) - A function to pass the result into</li>
+              <li><em><strong>noWrap</strong></em> (Boolean) - optional boolean value. If set to true, the make data will not be passed through the wrap function of the makeapi-client</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.getList(
+  "id-of-a-list",
+  function( err, listData ) {
+    if( err ) {
+      // something went wrong
+    }
+    console.log( listData ); // wrapped list data!
+  }
+).getList(
+  "id-of-another-list",
+  function( err, listData ) {
+    // unwrapped list data
+  },
+  true // noWrap is true!
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="get-users-lists" %}
+  {% include top.html %}
+  <h3>getListsByUser( userId, callback )</h3>
+  <p>Get a Users lists</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>userId</strong></em> (Number) - ID of the user whose lists are to be retrieved</li>
+              <li><em><strong>callback</strong></em> (Function) - A function to pass the result into</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.getListsByUser(
+  123,
+  function( err, lists ) {
+    if( err ) {
+      // something went wrong
+    }
+    console.log( lists );
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

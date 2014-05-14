@@ -1,0 +1,50 @@
+<div class="container">
+  {% include anchor.html id="constructor" %}
+  {% include top.html %}
+  <h3><a href="./#constructor" class="anchor-link">Make( options )</a></h3>
+  <p>Returns an instance of the client library that interacts with a Make API server.</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li>
+                <em><strong>options</strong></em> (Object) - An object with the following attributes:
+                <ul class="list-inset">
+                  <li><em><strong>apiURL</strong></em> (String) - <strong>required</strong> - A valid URL pointing to the Make API server</li>
+                  <li><em><strong>apiPrefix</strong></em> (String) - A path to append the API URL, defaults to "/api/20130724/make/"</li>
+                  <li><em><strong>csrfToken</strong></em> (String) - An optional CSRF token to send in request headers (browser environments only)</li>
+                  <li><em><strong>hawk</strong></em> (Object) - Hawk credentials to be used for authentication. In order to Create, Update, Delete, Like and Unlike make records, you must provide auth. Without this, you will only be permitted to search for makes.</li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+// without auth - Search only
+var makeapi = new Make({
+  apiURL: "http://makeapi.webmaker.org"
+});
+
+// with auth - Full CRUD functionality
+var makeapiTwo = new Make({
+  apiURL: "http://makeapi.webmaker.org",
+  hawk: {
+    // private key
+    key: "00000000-0000-0000-000000000000",
+    // public key
+    id: "00000000-0000-0000-000000000000"
+  }
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,365 @@
+<div class="container">
+  {% include anchor.html id="create-make" %}
+  {% include top.html %}
+  <h3>create( options, callback )</h3>
+  <p>Create a new Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li>
+                <em><strong>options</strong></em> (Object) - An Object defining a make. it should have the following attributes:
+                <ul class="list-inset">
+                  <li><em><strong>make</strong></em> (Object) - An object representing a new Make to create</li>
+                </ul>
+              </li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to create the make</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.create({
+  make: {
+    url: "http://somewhere.com/makeurl"
+    editurl: "http://webmakerapp.org/makeurl/edit",
+    remixurl: "http://somewhere.com/makeurl/remix",
+    title: "A make title",
+    description: "this is a make",
+    email: "webmakeruser@fakeemail.com",
+    contentType: "application/x-app",
+    thumbnail: "http://thumbnails.net/makethumbnail.png",
+    published: true
+  }
+}, function( err, newMake ) {
+  if( err ) {
+    // something went horribly wrong
+  }
+  // newMake is your shiny new make!
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="update-make" %}
+  {% include top.html %}
+  <h3>update( id, options, callback )</h3>
+  <p>Update a Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make you want to update</li>
+              <li><em><strong>options</strong></em> (Object) - An object containing any attributes of the make to be updated, with the values of each attribute being what to set</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to update the make</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.update(
+  "Make-ID",
+  theObjectDefiningTheMake,
+  function( err, updatedMake ) {
+    if( err ) {
+      // something went horribly wrong
+    }
+    // updatedMake is your updated make!
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="remove-make" %}
+  {% include top.html %}
+  <h3>remove( id, callback )</h3>
+  <p>Delete a Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make you want to delete</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to delete the make</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.delete(
+  "Make-ID",
+  function( err, deletedMake ) {
+    if( err ) {
+      // something went horribly wrong
+    }
+    // the deleted make's data is in `deletedMake`
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="like" %}
+  {% include top.html %}
+  <h3>like( id, maker, callback )</h3>
+  <p>Like a Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make the user wants to like</li>
+              <li><em><strong>maker</strong></em> (String) - The email address associated with the Webmaker account that is liking a make. It is up to the consumer application to verify that they are dealing with a logged in user before issuing this API call</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to like the make</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.like(
+  "Make-ID",
+  "webmakeruser",
+  function( err, make ) {
+    if( err ) {
+      // something went horribly wrong
+    }
+    // success!
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="unlike" %}
+  {% include top.html %}
+  <h3>unlike( id, maker, callback )</h3>
+  <p>Unlike a Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make the user wants to unlike</li>
+              <li><em><strong>maker</strong></em> (String) - The email address associated with the Webmaker account that is unliking a make. It is up to the consumer application to verify that they are dealing with a logged in user before issuing this API call</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to unlike the make</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.unlike(
+  "Make-ID",
+  "webmakeruser",
+  function( err, make ) {
+    if( err ) {
+      // something went horribly wrong
+    }
+    // success!
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="report" %}
+  {% include top.html %}
+  <h3>report( id, maker, callback )</h3>
+  <p>Report a Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make to report</li>
+              <li><em><strong>maker</strong></em> (String) - The email address associated with the Webmaker account that is reporting a make. It is up to the consumer application to verify that they are dealing with a logged in user before issuing this API call</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to report the make</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.report(
+  "Make-ID",
+  "webmakeruser"
+  function( err, make ) {
+    if( err ) {
+      // something went horribly wrong
+    }
+    // success!
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="cancel-report" %}
+  {% include top.html %}
+  <h3>cancelReport( id, maker, callback )</h3>
+  <p>Cancel a report on a Make</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make the to cancel a report on</li>
+              <li><em><strong>maker</strong></em> (String) - The email address associated with the Webmaker account that is cancelling the report. It is up to the consumer application to verify that they are dealing with a logged in user before issuing this API call</li>
+              <li><em><strong>callback</strong></em> (Function) - a function to execute when the server completes or fails to cancel the report</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObjWithAuth ); // this NEEDS auth
+
+makeapi
+.cancelReport(
+  "Make-ID",
+  function( err, make ) {
+    if( err ) {
+      // something went horribly wrong
+    }
+    // success!
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="remix-count" %}
+  {% include top.html %}
+  <h3>remixCount( id, options, callback )</h3>
+  <p>Return the count of remixes for a given project in a given date range.</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>id</strong></em> (String) - The ID of the make to get a remixCount for</li>
+              <li>
+                <em><strong>options</strong></em> (Object) - options for the remixCount call:
+                <ul class="list-inset">
+                  <li><em><strong>from</strong></em> (Number) -  Unix style timestamp indicating the start date for the remix count query. If undefined, from is the date of the make's creation.</li>
+                  <li><em><strong>to</strong></em> (Number) - Unix style timestamp indicating the end date for the remix count query. The server's current time is used if undefined.</li>
+                </ul>
+              </li>
+              <li><em><strong>callback</strong></em> (Function) - A function to pass the result into</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+// count remixes of the given project made between 7 and 3 days ago
+makeapi
+.remixCount(
+  "idofthemake",
+  {
+    // 1 week ago
+    from: Date.now() - ( 1000 * 60 * 60 * 24 * 7 )
+    // three days ago
+    to: Date.now() - ( 1000 * 60 * 60 * 24 * 3 )
+  },
+  function( err, result ) {
+    if( err ) {
+      // something went wrong
+    }
+    // Number of remixes!
+    console.log( result.count );
+  }
+);
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
