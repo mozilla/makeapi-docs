@@ -2,3 +2,4 @@ safe: true
 lsi: false
 highlighter: pygments
 permalink: /:title
+baseurl: /makeapi-docs
