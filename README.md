@@ -7,4 +7,4 @@ Documenting:
 * [Make API](https://github.com/mozilla/makeapi)
 * [MakeAPI Client](https://github.com/mozilla/makeapi-client)
 
-View at http://cadecairos.github.io/makeapi-docs/
+View at http://mozilla.github.io/makeapi-docs/
