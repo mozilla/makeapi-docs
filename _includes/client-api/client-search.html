@@ -1,4 +1,146 @@
 <div class="container">
+  {% include anchor.html id="find" %}
+  {% include top.html %}
+  <h3>find( options )</h3>
+  <p>Build a make search based on the options argument</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>options</strong></em> (Object) - An object defining search types and terms to apply</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.find({
+  // search for two tags
+  tags: [
+    {
+      tags: [ "awesome", "technology" ]
+    }
+  ],
+  description: "kittens"
+})
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+makeapi
+.find({
+  tags: [
+    {
+      tags: [ "awesome", "technology" ]
+    },
+    // filter for makes *without* the tags above
+    false
+  ],
+  description: "kittens"
+})
+.then(function( err, makes ) {
+  // handle response
+});
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="matchany" %}
+  {% include top.html %}
+  <h3>matchAll( term [, options] )</h3>
+  <p>Search for a term in many Make fields</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>term</strong></em> (String) - A search term to look for. it is applied on the following fields: author, contentType, description, id, remixedFrom, tagPrefix, tags, title, url, user</li>
+              <li>
+                <em><strong>options</strong></em> (Object) - An optional Object defining settings for the search:
+                <ul class="list-inset">
+                  <li><em><strong>no_or</strong></em> (Boolean) - set to true to run the query with AND execution for the field terms</li>
+                  <li><em><strong>ignore</strong></em> (String or [String] - A string or array of strings defining which fields to not search the term against.</li>
+                  <li><em><strong>negateFields</strong></em> (String or [String] - A string or array of strings defining which fields should have "not" filters applied. i.e. "title is not 'foo'"</li>
+                </ul>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+makeapi
+.matchAny( "foo" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+makeapi
+.matchAny( "foo", {
+  no_or: true
+})
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+makeapi
+.matchAny( "foo", {
+  ignore: [ "url", "title", "tagPrefix" ]
+})
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+makeapi
+.matchAny( "foo",{
+  ignore: "user",
+  negateFields: [ "description", "url", "title" ]
+})
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
   {% include anchor.html id="content-type" %}
   {% include top.html %}
   <h3>contentType( type [, not ] )</h3>
@@ -16,7 +158,7 @@
           </td>
         </tr>
         <tr>
-          <td class="vcenter">Example:</td>
+          <td class="vcenter">Examples:</td>
           <td class="text-left">
 {% highlight js %}
 var makeapi = new Make( options );
