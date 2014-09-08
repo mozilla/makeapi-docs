@@ -1,0 +1,51 @@
+<div class="container">
+  {% include anchor.html id="directives" %}
+  <h2>Directives</h2>
+
+  <h3>
+    Make
+  </h3>
+  <p>To create an individal make, just add a <code>make</code> element with <code>make-id</code> and <code>user-id</code> attributes.</p>
+
+{% highlight html %}
+  <make make-id="539f56c3522cf67163000154" user-id="{{ userId }}"></make>
+{% endhighlight %}
+
+  <b>Note</b>: You have to give the user id from your controller. e.g.:
+
+{% highlight js %}
+controller('yourController', ['$rootScope', '$scope',
+  function ($rootScope, $scope) {
+    function init() {
+      $scope.userId = $rootScope._user.id;
+    }
+    init();
+  }
+])
+{% endhighlight %}
+
+  <h3>Make-Gallery</h3>
+  <p>
+    To create a gallery of makes, use a <code>make-gallery</code> element (or attribute):
+  </p>
+
+{% highlight html %}
+<make-gallery
+  tags="['puppy']"
+  user-id="{{ userId }}"
+  container-class="col-sm-3">
+</make-gallery>
+{% endhighlight %}
+  <p>
+    Make galleries have the following optional attributes:
+  </p>
+
+  <ul>
+    <li><code>limit</code> [number] - This max number of makes. The default is 20.</li>
+    <li><code>tags</code> [array] - An array of tags</li>
+    <li><code>ids</code> [array] - An array of ids</li>
+    <li><code>makeList</code> [string] - An id of a [makeList](http://mozilla.github.io/makeapi-docs/client-docs/#get-list)</li>
+    <li><code>container-class</code> [string] - Classes to be added to each make's container element</li>
+  </ul>
+
+</div>
