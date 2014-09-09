@@ -1,0 +1,26 @@
+<div class="container">
+  {% include anchor.html id="service" %}
+
+  <h2>Service</h2>
+
+  <p>Included in this module is the <code>makeApi</code> service.</p>
+
+  <p>You should use it just like the normal <a href="{{ site.baseurl }}/client-docs">makeapi-client</a> except instead of using the final function `.then()`, use `.get()` instead.</p>
+
+  <code>.get()</code> returns a promise that can be resolved just like <code>$http</code>'s <code>get</code>, i.e. with the functions <code>.success()</code> and <code>.error()</code>:
+
+  <h3>Example</h3>
+
+{% highlight js %}
+  makeApi
+    .tags(['puppy'])
+    .limit(10)
+    .get()
+    .success(data) {
+      console.log(data);
+    })
+    .error(err) {
+      console.error(err);
+    });
+{% endhighlight %}
+</div>

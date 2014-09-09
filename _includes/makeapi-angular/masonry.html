@@ -1,0 +1,20 @@
+<div class="container">
+  {% include anchor.html id="masonry" %}
+  <h2>Masonry</h2>
+  <p>In webmaker, you can use make galleries with Masonry:</p>
+
+  <p>
+    Just give the <code>masonry-gallery</code> attribute to an element and put the masonry options (documented <a href="http://masonry.desandro.com/options.html" target="_blank">here</a>) in the <code>data-masonry-options</code> attribute. Then, add makes as normal:
+  </p>
+
+ {% highlight html %}
+<div masonry-gallery data-masonry-options='{"itemSelector": ".sample-make", "gutter": 10, "columnWidth": 300}'>
+  <make class="sample-make" user-id="{{ userId }}" make-id="539f57af553a77203f000173"></make>
+  <make class="sample-make" user-id="{{ userId }}" make-id="5400dad39f2f4aac36000003"></make>
+  <make class="sample-make" user-id="{{ userId }}" make-id="5400dae29f2f4aac36000004"></make>
+  <make class="sample-make" user-id="{{ userId }}" make-id="5400daf59f2f4aac36000005"></make>
+</div>
+{% endhighlight %}
+
+  <p>They should automatically be masonry-fied thanks to the masonryGallery directive.</p>
+</div>
