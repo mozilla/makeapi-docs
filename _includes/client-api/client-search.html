@@ -60,10 +60,10 @@ makeapi
 </div>
 
 <div class="container">
-  {% include anchor.html id="matchany" %}
+  {% include anchor.html id="any" %}
   {% include top.html %}
-  <h3>matchAll( term [, options] )</h3>
-  <p>Search for a term in many Make fields</p>
+  <h3>any( term [, ignore ] )</h3>
+  <p>Match makes which have at least one field that matches the given term.</p>
   <div class="container">
     <table class="table table-hover">
       <tbody class="text-center">
@@ -72,14 +72,7 @@ makeapi
           <td class="text-left">
             <ul class="list-unstyled">
               <li><em><strong>term</strong></em> (String) - A search term to look for. it is applied on the following fields: author, contentType, description, id, remixedFrom, tagPrefix, tags, title, url, user</li>
-              <li>
-                <em><strong>options</strong></em> (Object) - An optional Object defining settings for the search:
-                <ul class="list-inset">
-                  <li><em><strong>no_or</strong></em> (Boolean) - set to true to run the query with AND execution for the field terms</li>
-                  <li><em><strong>ignore</strong></em> (String or [String] - A string or array of strings defining which fields to not search the term against.</li>
-                  <li><em><strong>negateFields</strong></em> (String or [String] - A string or array of strings defining which fields should have "not" filters applied. i.e. "title is not 'foo'"</li>
-                </ul>
-              </li>
+              <li><em><strong>ignore</strong></em> (String or Array) - An optional parameter indicating a field or fields to omit from the any search</li>
             </ul>
           </td>
         </tr>
@@ -90,7 +83,7 @@ makeapi
 var makeapi = new Make( optionsObj );
 
 makeapi
-.matchAny( "foo" )
+.any( "foo" )
 .then(function( err, makes ) {
   if ( err ) {
     // handle error case
@@ -98,10 +91,9 @@ makeapi
   // handle success!
 });
 
+// Don't match makes that only match on "user"
 makeapi
-.matchAny( "foo", {
-  no_or: true
-})
+.any( "foo", "user")
 .then(function( err, makes ) {
   if ( err ) {
     // handle error case
@@ -109,10 +101,9 @@ makeapi
   // handle success!
 });
 
+// Don't match makes only that match any of the given fields
 makeapi
-.matchAny( "foo", {
-  ignore: [ "url", "title", "tagPrefix" ]
-})
+.any( "foo",[ "url", "title", "tagPrefix" ])
 .then(function( err, makes ) {
   if ( err ) {
     // handle error case
@@ -120,11 +111,60 @@ makeapi
   // handle success!
 });
 
+{% endhighlight %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+  {% include anchor.html id="all" %}
+  {% include top.html %}
+  <h3>all( term [, ignore ] )</h3>
+  <p>Match makes that match the term in all fields. best used with the optional ignore parameter, to limit fields from being included in the query.</p>
+  <div class="container">
+    <table class="table table-hover">
+      <tbody class="text-center">
+        <tr>
+          <td class="vcenter">Parameters:</td>
+          <td class="text-left">
+            <ul class="list-unstyled">
+              <li><em><strong>term</strong></em> (String) - A search term to look for. it is applied on the following fields: author, contentType, description, id, remixedFrom, tagPrefix, tags, title, url, user</li>
+              <li><em><strong>ignore</strong></em> (String or Array) - An optional parameter indicating a field or fields to omit from the any search</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="vcenter">Example:</td>
+          <td class="text-left">
+{% highlight js %}
+var makeapi = new Make( optionsObj );
+
+// match makes that contain foo in all fields (basically useless without the `ignore` param)
 makeapi
-.matchAny( "foo",{
-  ignore: "user",
-  negateFields: [ "description", "url", "title" ]
-})
+.all( "foo" )
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// Don't match on the given field
+makeapi
+.all( "foo", "user")
+.then(function( err, makes ) {
+  if ( err ) {
+    // handle error case
+  }
+  // handle success!
+});
+
+// exclude the given fields from the query
+makeapi
+.all( "foo",[ "url", "title", "tagPrefix" ])
 .then(function( err, makes ) {
   if ( err ) {
     // handle error case
